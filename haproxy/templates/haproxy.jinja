@@ -263,6 +263,15 @@ listen {{ listener.get('name', listener_name) }}
         {%- endfor %}
       {%- endif %}
     {%- endif %}
+    {%- if 'httpresponses' in listener %}
+      {%- if listener.httpresponses is string %}
+    httpp-response {{ listener.httpresponses }}
+      {%- else %}
+        {%- for httpresponse in listener.httpresponses %}
+    http-response {{ httpresponse }}
+        {%- endfor %}
+      {%- endif %}
+    {%- endif %}
     {%- if 'httpchecks' in listener %}
       {%- if listener.httpchecks is string %}
     http-check {{ listener.httpchecks }}
