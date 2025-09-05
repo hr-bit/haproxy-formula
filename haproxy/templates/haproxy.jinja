@@ -336,6 +336,9 @@ listen {{ listener.get('name', listener_name) }}
     {%- if 'balance' in listener %}
     balance {{ listener.balance }}
     {%- endif %}
+    {%- if 'persist' in listener %}
+    persist {{ listener.persist }}
+    {%- endif %}
     {%- if 'maxconn' in listener %}
     maxconn {{ listener.maxconn }}
     {%- endif %}
@@ -504,6 +507,9 @@ backend {{ backend.get('name', backend_name) }}
     {%- endif %}
     {%- if 'balance' in backend %}
     balance {{ backend.balance }}
+    {%- endif %}
+    {%- if 'persist' in backend %}
+    persist {{ backend.persist }}
     {%- endif %}
     {%- if 'timeouts' in backend %}
       {%- for timeout in backend.timeouts %}
